@@ -3,15 +3,10 @@ resource "aws_s3_bucket" "my_s3_bucket" {
   tags           = var.tags
 }
 
-resource "aws_s3_bucket_acl" "my_s3_bucket" {
-  bucket = aws_s3_bucket.my_s3_bucket.id
-  acl    = var.acl
-}
-
 resource "aws_s3_bucket_versioning" "my_s3_bucket" {
   bucket = aws_s3_bucket.my_s3_bucket.id
 
   versioning_configuration {
-    status = var.versioning ? "Enabled" : "true"
+    status = var.versioning ? "Enabled" : "Suspended"
   }
 }
